@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#FFF4D6">
+<meta name="theme-color" content="#FFD9EC">
 <title>美食小精靈</title>
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,47 +12,54 @@
 <link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#FFF4D6; --dot:#F6E3AE; --card:#FFFFFF; --text:#2B2118; --muted:#76664F;
-  --ink:#2B2118; --sun:#FFD23F; --sky:#8ED1FC; --tomato:#FF5A3C; --note:#FFF9C4;
+  --bg:#FFF4E2; --card:#FFFFFF; --text:#2B2118; --muted:#6E5F4B; --ink:#2B2118;
+  --pink:#FF5FA2; --orange:#FF8C42; --yellow:#FFD23F; --mint:#3DDC97; --sky:#4CC9F0; --violet:#9B5DE5;
+  --tomato:#FF5A3C; --note:#FFF9C4;
+  --grad:linear-gradient(165deg,#FFD9EC 0%,#FFF0C2 28%,#D8F8E4 56%,#CDEBFF 80%,#E8DBFF 100%);
+  --confetti:.6; --tint:22%;
   --font:'Huninn','Zen Maru Gothic','PingFang TC','Microsoft JhengHei',system-ui,sans-serif;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#1E2136; --dot:#2A2E4B; --card:#2D3252; --text:#FFF4D6; --muted:#C2BBD3; --ink:#0D0E1A;
+    --bg:#1B1D33; --card:#272B4A; --text:#FFF4D6; --muted:#CBC3DE; --ink:#0B0C18;
+    --grad:linear-gradient(165deg,#3A1F5C 0%,#26285A 45%,#123E56 100%); --confetti:.32; --tint:30%;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#1E2136; --dot:#2A2E4B; --card:#2D3252; --text:#FFF4D6; --muted:#C2BBD3; --ink:#0D0E1A;
+  --bg:#1B1D33; --card:#272B4A; --text:#FFF4D6; --muted:#CBC3DE; --ink:#0B0C18;
+  --grad:linear-gradient(165deg,#3A1F5C 0%,#26285A 45%,#123E56 100%); --confetti:.32; --tint:30%;
 }
 
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0; min-height:100vh; min-height:100dvh;
-  font-family:var(--font); font-weight:400; line-height:1.5; color:var(--text);
-  background:radial-gradient(circle, var(--dot) 1.6px, transparent 1.9px) 0 0/16px 16px, var(--bg);
+html{background:var(--bg); -webkit-text-size-adjust:100%}
+body{margin:0; min-height:100vh; min-height:100dvh; font-family:var(--font); font-weight:400; line-height:1.5; color:var(--text)}
+body::before{content:""; position:fixed; inset:0; z-index:-2; background:var(--grad)}
+body::after{
+  content:""; position:fixed; inset:0; z-index:-1; opacity:var(--confetti);
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M28 52l10-17 10 17z' stroke='%233DDC97'/%3E%3Ccircle cx='200' cy='38' r='9' stroke='%23FF5FA2'/%3E%3Cpath d='M110 130q10-12 20 0t20 0' stroke='%234CC9F0'/%3E%3Cpath d='M58 196v18M49 205h18' stroke='%23FF8C42'/%3E%3Cpath d='M214 204l16-7' stroke='%239B5DE5'/%3E%3C/g%3E%3Cpath d='M180 118l4 9 10 1-7 7 2 10-9-5-9 5 2-10-7-7 10-1z' fill='%23FFD23F'/%3E%3Ccircle cx='236' cy='150' r='5' fill='%239B5DE5'/%3E%3Ccircle cx='96' cy='70' r='4' fill='%23FF5FA2'/%3E%3Ccircle cx='140' cy='232' r='5' fill='%234CC9F0'/%3E%3C/svg%3E") 0 0/260px 260px;
 }
 h1,h2,h3{font-weight:400; margin:0}
 button,input{font:inherit; color:inherit}
 a{color:inherit}
 .wrap{max-width:720px; margin:0 auto; padding:16px 16px calc(20px + env(safe-area-inset-bottom))}
 .screen[hidden]{display:none !important}
-.center{min-height:calc(100dvh - 120px); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:16px}
+.center{min-height:calc(100dvh - 110px); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:16px}
 
 /* ---------- buttons ---------- */
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:6px;
-  background:var(--sun); color:#2B2118; text-decoration:none; cursor:pointer;
+  background:var(--yellow); color:#2B2118; text-decoration:none; cursor:pointer;
   border:3px solid var(--ink); border-radius:999px; box-shadow:4px 4px 0 var(--ink);
   padding:12px 20px; font-size:17px; transition:transform .08s, box-shadow .08s;
   -webkit-tap-highlight-color:transparent;
 }
 .btn:active{transform:translate(3px,3px); box-shadow:1px 1px 0 var(--ink)}
-.btn:focus-visible,.tile:focus-visible{outline:3px dashed var(--tomato); outline-offset:3px}
-.btn.big{font-size:20px; padding:16px 28px}
+.btn:focus-visible,.tile:focus-visible,.chip:focus-visible{outline:3px dashed var(--tomato); outline-offset:3px}
+.btn.big{font-size:20px; padding:15px 28px; background:linear-gradient(180deg,#FFE066,#FFC21A)}
 .btn.small{font-size:14px; padding:6px 12px; border-width:2.5px; box-shadow:2px 2px 0 var(--ink)}
 .btn.small:active{transform:translate(2px,2px); box-shadow:0 0 0 var(--ink)}
 .btn.blue{background:var(--sky)}
+.btn.pink{background:var(--pink); color:#fff}
 .btn.plain{background:var(--card); color:var(--text)}
 
 /* ---------- sprites ---------- */
@@ -67,25 +74,28 @@ a{color:inherit}
   75%{transform:translateY(0) scale(1,1)}
 }
 @keyframes sp-sway{0%,100%{transform:rotate(-7deg)} 50%{transform:rotate(7deg)}}
-.loading-sprites .sprite.anim .sp-body{animation-duration:.9s}
-.loading-sprites .sprite:nth-child(2) .sp-body{animation-delay:-.3s}
-.loading-sprites .sprite:nth-child(3) .sp-body{animation-delay:-.6s}
-@media (prefers-reduced-motion: reduce){
-  .sprite.anim .sp-body,.sprite.anim .sp-stem{animation:none}
-}
+@keyframes spin{to{transform:rotate(1turn)}}
+@keyframes bounce{0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)}}
 
 /* ---------- home ---------- */
-.home{gap:14px; padding-top:12px}
-.hero-sprites{display:flex; align-items:flex-end; justify-content:center; gap:4px; min-height:110px}
+.home{gap:14px; padding-top:8px}
+.hero{display:flex; flex-direction:column; align-items:center}
+.hero-sprites{position:relative; z-index:1; display:flex; align-items:flex-end; justify-content:center; gap:2px; margin-bottom:-24px}
+.hill{display:block; width:min(340px,100%); height:auto}
 .logo{
-  font-size:clamp(44px,13vw,68px); line-height:1.1; letter-spacing:.04em; color:var(--sun);
+  font-size:clamp(44px,13vw,68px); line-height:1.1; letter-spacing:.02em;
   -webkit-text-stroke:3px var(--ink); paint-order:stroke fill; text-shadow:4px 5px 0 var(--ink);
-  transform:rotate(-2deg);
 }
-.tagline{margin:0; font-size:17px; color:var(--muted)}
+.logo span{display:inline-block}
+.logo span:nth-child(1){color:var(--pink); transform:rotate(-6deg)}
+.logo span:nth-child(2){color:var(--orange); transform:rotate(3deg) translateY(-3px)}
+.logo span:nth-child(3){color:var(--yellow); transform:rotate(-3deg)}
+.logo span:nth-child(4){color:var(--mint); transform:rotate(4deg) translateY(-2px)}
+.logo span:nth-child(5){color:var(--sky); transform:rotate(-4deg)}
+.tagline{margin:0; font-size:17px}
 .or{display:flex; align-items:center; gap:10px; width:100%; max-width:360px; color:var(--muted)}
 .or::before,.or::after{content:""; flex:1; border-top:3px dotted var(--muted)}
-.place-form{display:flex; gap:8px; width:100%; max-width:420px}
+.place-form{display:flex; gap:8px; width:100%; max-width:440px}
 .place-form input{
   flex:1; min-width:0; padding:12px 16px; font-size:16px; background:var(--card);
   border:3px solid var(--ink); border-radius:999px; box-shadow:inset 2px 2px 0 rgba(0,0,0,.08);
@@ -93,15 +103,68 @@ a{color:inherit}
 .place-form input:focus{outline:3px dashed var(--tomato); outline-offset:2px}
 .place-form .btn{padding:10px 18px}
 
+/* ---------- filters ---------- */
+#homeFilters,#resFilters{width:100%; display:flex; justify-content:center}
+#resFilters{margin-top:14px}
+.filters{
+  width:100%; max-width:440px; text-align:left; padding:12px 14px 6px;
+  background:var(--card); border:3px solid var(--ink); border-radius:20px; box-shadow:5px 5px 0 var(--violet);
+}
+#resFilters .filters{max-width:none}
+.f-row + .f-row{margin-top:10px; padding-top:10px; border-top:2.5px dashed var(--muted)}
+.f-head{display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:16px}
+.f-value{font-size:14px; padding:0 10px; border-radius:999px; background:var(--yellow); color:#2B2118; border:2px solid var(--ink); white-space:nowrap}
+.chips{display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-top:8px}
+.chip{
+  padding:6px 0; font-size:14px; cursor:pointer; background:var(--card); color:var(--text);
+  border:2.5px solid var(--ink); border-radius:999px; box-shadow:2px 2px 0 var(--ink);
+  transition:transform .1s; -webkit-tap-highlight-color:transparent;
+}
+.chip[aria-pressed="true"]{background:var(--c); color:#2B2118; transform:translate(-1px,-2px); box-shadow:3px 4px 0 var(--ink)}
+.range2{position:relative; height:34px; margin-top:6px}
+.range2 .track{
+  position:absolute; left:4px; right:4px; top:11px; height:12px; overflow:hidden; border-radius:999px; border:2.5px solid var(--ink);
+  background:linear-gradient(90deg,#3DDC97,#C6E842,#FFD23F,#FF8C42,#FF5FA2,#9B5DE5);
+}
+.range2 .dim{position:absolute; top:0; bottom:0; background:var(--card); opacity:.72}
+.range2 .dim.l{left:0} .range2 .dim.r{right:0}
+.range2 input{
+  position:absolute; left:0; top:0; width:100%; height:34px; margin:0; background:none;
+  -webkit-appearance:none; appearance:none; pointer-events:none; outline:none;
+}
+.range2 input::-webkit-slider-runnable-track{height:34px; background:none; border:0}
+.range2 input::-moz-range-track{height:34px; background:none; border:0}
+.range2 input::-webkit-slider-thumb{
+  -webkit-appearance:none; pointer-events:auto; width:30px; height:30px; margin-top:2px; cursor:grab;
+  border-radius:50%; background:var(--yellow); border:3px solid var(--ink); box-shadow:2px 2px 0 var(--ink);
+}
+.range2 input::-moz-range-thumb{
+  pointer-events:auto; width:24px; height:24px; cursor:grab;
+  border-radius:50%; background:var(--yellow); border:3px solid var(--ink); box-shadow:2px 2px 0 var(--ink);
+}
+.range2 input:focus-visible::-webkit-slider-thumb{outline:3px dashed var(--tomato); outline-offset:2px}
+.ticks{position:relative; height:20px; font-size:12px; color:var(--muted)}
+.ticks span{position:absolute; top:0; transform:translateX(-50%); white-space:nowrap}
+
 /* ---------- loading / error ---------- */
 .loading-sprites{display:flex; gap:10px; align-items:flex-end}
-.loading-msg{margin:0; font-size:19px}
+.loading-sprites .sprite.anim .sp-body{animation-duration:.9s}
+.loading-sprites .sprite:nth-child(2) .sp-body{animation-delay:-.3s}
+.loading-sprites .sprite:nth-child(3) .sp-body{animation-delay:-.6s}
+.loading-msg{margin:0; font-size:19px; max-width:320px}
+.dots{display:flex; gap:8px}
+.dots i{width:14px; height:14px; border-radius:50%; border:2.5px solid var(--ink); animation:bounce 1s ease-in-out infinite}
+.dots i:nth-child(1){background:var(--pink)}
+.dots i:nth-child(2){background:var(--orange); animation-delay:.1s}
+.dots i:nth-child(3){background:var(--yellow); animation-delay:.2s}
+.dots i:nth-child(4){background:var(--mint); animation-delay:.3s}
+.dots i:nth-child(5){background:var(--sky); animation-delay:.4s}
 .err-actions{display:flex; flex-wrap:wrap; gap:12px; justify-content:center}
 
 /* ---------- speech bubble ---------- */
 .bubble{
   position:relative; background:var(--card); color:var(--text);
-  border:3px solid var(--ink); border-radius:18px; box-shadow:3px 3px 0 var(--ink); padding:10px 14px;
+  border:3px solid var(--ink); border-radius:18px; box-shadow:4px 4px 0 var(--c,var(--pink)); padding:10px 14px;
 }
 .bubble::before,.bubble::after{content:""; position:absolute; border-style:solid}
 .bubble.left::before{left:-17px; bottom:14px; border-width:9px 16px 9px 0; border-color:transparent var(--ink) transparent transparent}
@@ -115,80 +178,124 @@ a{color:inherit}
 /* ---------- results ---------- */
 .resbar{
   position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:8px;
-  margin:-16px -16px 0; padding:10px 16px;
-  background:var(--bg); background:color-mix(in srgb, var(--bg) 90%, transparent);
-  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); border-bottom:3px solid var(--ink);
+  margin:-16px -16px 0; padding:10px 16px; background:var(--card); border-bottom:3px solid var(--ink);
+}
+.resbar::after{
+  content:""; position:absolute; left:0; right:0; bottom:-9px; height:6px;
+  background:linear-gradient(90deg,var(--pink),var(--orange),var(--yellow),var(--mint),var(--sky),var(--violet));
 }
 .where{flex:1; min-width:0; font-size:15px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .where .place{font-size:17px}
 .notice{
-  display:flex; gap:8px; align-items:flex-start; margin:14px 0 0; padding:10px 12px;
+  display:flex; gap:8px; align-items:flex-start; margin:20px 0 0; padding:10px 12px;
   background:var(--note); color:#2B2118; border:3px dashed var(--ink); border-radius:14px; font-size:14px;
 }
-.notice mark{background:linear-gradient(transparent 55%, #FFD23F 55%); color:inherit}
+.notice mark{background:linear-gradient(transparent 55%, #FFB3D4 55%); color:inherit}
 .notice-x{flex:none; border:0; background:none; cursor:pointer; font-size:16px; padding:0 4px; color:#2B2118}
-.section-title{display:flex; align-items:baseline; justify-content:space-between; gap:8px; margin:18px 0 10px; font-size:21px}
+.section-title{display:flex; align-items:baseline; justify-content:space-between; gap:8px; margin:20px 0 0; font-size:21px}
+.section-title .hl{background:linear-gradient(transparent 58%, var(--yellow) 58%)}
 .section-title .sub{font-size:14px; color:var(--muted)}
+.summary{margin:2px 0 0; font-size:14px; color:var(--muted)}
 
-.tiles{display:grid; grid-template-columns:repeat(auto-fill,minmax(96px,1fr)); gap:12px}
+.tiles{
+  position:relative; display:grid; grid-auto-flow:column; grid-template-rows:repeat(2,auto); grid-auto-columns:94px; gap:16px 12px;
+  margin:0 -16px; padding:16px 16px 14px; overflow-x:auto; scroll-snap-type:x proximity; scroll-padding:0 16px;
+  scrollbar-width:none; -webkit-overflow-scrolling:touch;
+}
+.tiles::-webkit-scrollbar{display:none}
 .tile{
-  position:relative; display:flex; flex-direction:column; align-items:center; gap:0;
-  padding:8px 4px 8px; cursor:pointer; background:var(--card); color:var(--text);
+  position:relative; display:flex; flex-direction:column; align-items:center; padding:6px 2px 8px; cursor:pointer;
+  scroll-snap-align:start; color:var(--text);
+  background-color:var(--card); background-color:color-mix(in srgb, var(--c) 32%, var(--card));
+  background-image:repeating-linear-gradient(-45deg, rgba(255,255,255,.3) 0 7px, transparent 7px 14px);
   border:3px solid var(--ink); border-radius:18px; box-shadow:3px 3px 0 var(--ink);
   transition:transform .12s, box-shadow .12s; -webkit-tap-highlight-color:transparent;
 }
-.tile:nth-child(odd){transform:rotate(-1.2deg)}
-.tile:nth-child(even){transform:rotate(1.2deg)}
-.tile[aria-pressed="true"]{background:var(--soft); color:#2B2118; transform:translate(-2px,-3px) rotate(0); box-shadow:5px 6px 0 var(--ink)}
-.tile-name{font-size:14px; line-height:1.3}
-.tile-who{font-size:11px; color:var(--muted)}
-.tile[aria-pressed="true"] .tile-who{color:#5B4E3C}
+.tile:nth-child(odd){transform:rotate(-1.5deg)}
+.tile:nth-child(even){transform:rotate(1.5deg)}
+.tile[aria-pressed="true"]{background-color:var(--c); transform:translateY(-4px) scale(1.04); box-shadow:4px 6px 0 var(--ink)}
+.tile-name{
+  margin-top:2px; padding:0 8px; font-size:13px; white-space:nowrap;
+  background:var(--card); color:var(--text); border:2px solid var(--ink); border-radius:999px;
+}
+.tile-who{font-size:11px; margin-top:1px}
+.tile[aria-pressed="true"] .tile-who{color:#2B2118}
 .tile-count{
-  position:absolute; top:-10px; right:-8px; min-width:28px; padding:0 6px; font-size:13px; line-height:24px;
+  position:absolute; top:-11px; right:-8px; min-width:28px; padding:0 6px; font-size:13px; line-height:24px;
   background:var(--tomato); color:#fff; border:2.5px solid var(--ink); border-radius:999px;
 }
+.tile:nth-child(5n+2) .tile-count{background:var(--violet)}
+.tile:nth-child(5n+3) .tile-count{background:#1FA67A}
+.tile:nth-child(5n+4) .tile-count{background:#1D8FE1}
+.tile:nth-child(5n+5) .tile-count{background:#F26B1D}
 
-.panel{scroll-margin-top:64px}
-.panel-head{display:flex; align-items:flex-end; gap:14px; margin:26px 0 14px}
-.panel-head .bubble{flex:1; margin-bottom:22px}
+.panel{scroll-margin-top:70px}
+.panel-head{display:flex; align-items:flex-end; gap:12px; margin:14px 0 16px}
+.panel-head .bubble{flex:1; margin-bottom:20px}
+.burst{position:relative; flex:none; width:108px; height:108px; display:grid; place-items:center}
+.burst::before{
+  content:""; position:absolute; inset:0; border-radius:50%; border:3px solid var(--ink);
+  background:var(--c); background:repeating-conic-gradient(var(--c) 0 15deg, color-mix(in srgb, var(--c) 35%, #fff) 15deg 30deg);
+  animation:spin 24s linear infinite;
+}
+.burst .sprite{position:relative; margin-top:-8px}
 .list{display:grid; gap:14px}
 .card{
-  display:flex; gap:12px; padding:12px; background:var(--card);
+  display:flex; gap:12px; padding:12px;
+  background:var(--card); background:color-mix(in srgb, var(--c) var(--tint), var(--card));
   border:3px solid var(--ink); border-radius:18px; box-shadow:4px 4px 0 var(--ink);
 }
 .card-sprite{
-  flex:none; width:56px; align-self:flex-start; display:flex; justify-content:center; padding:4px 0 2px;
-  background:var(--soft); border:2.5px solid var(--ink); border-radius:14px;
+  flex:none; width:58px; align-self:flex-start; display:flex; justify-content:center; padding:4px 0 2px;
+  background:var(--c); background:color-mix(in srgb, var(--c) 60%, #fff); border:2.5px solid var(--ink); border-radius:14px;
 }
 .card-body{flex:1; min-width:0}
 .card-name{font-size:18px; line-height:1.35; overflow-wrap:anywhere}
-.card-meta{display:flex; flex-wrap:wrap; align-items:center; gap:4px 10px; margin-top:4px; font-size:13px; color:var(--muted)}
-.tag{background:var(--c); color:#2B2118; border:2px solid var(--ink); border-radius:999px; padding:0 8px; font-size:12px}
-.card-hours{margin-top:4px; font-size:13px; color:var(--muted); overflow-wrap:anywhere}
+.card-meta{display:flex; flex-wrap:wrap; align-items:center; gap:5px 6px; margin-top:5px}
+.tag,.pill{border:2px solid var(--ink); border-radius:999px; padding:0 8px; font-size:12.5px; white-space:nowrap}
+.tag{background:var(--c); color:#2B2118}
+.pill{background:var(--card); color:var(--text)}
+.pill.price{background:#FFF3B0; color:#2B2118}
+.card-hours{margin-top:5px; font-size:13px; color:var(--muted); overflow-wrap:anywhere}
 .card-actions{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
 .more{display:flex; justify-content:center; margin-top:18px}
 .empty{display:flex; flex-direction:column; align-items:center; gap:16px; text-align:center; margin-top:36px}
 
 .foot{margin-top:28px; text-align:center; font-size:12px; color:var(--muted)}
+
+@media (prefers-reduced-motion: reduce){
+  .sprite.anim .sp-body,.sprite.anim .sp-stem,.burst::before,.dots i{animation:none}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <section id="home" class="screen center home">
-    <div class="hero-sprites" id="heroSprites"></div>
-    <h1 class="logo">美食小精靈</h1>
-    <p class="tagline">頭上長出美食的小精靈們，<br>帶你找附近 500 公尺內的好吃的！</p>
+    <div class="hero">
+      <div class="hero-sprites" id="heroSprites"></div>
+      <svg class="hill" viewBox="0 0 340 46" aria-hidden="true">
+        <path d="M4 44C44 8 296 8 336 44Z" fill="#7ED957" stroke="#2B2118" stroke-width="3" stroke-linejoin="round"/>
+        <g stroke="#2B2118" stroke-width="1.5">
+          <circle cx="52" cy="34" r="4" fill="#FF5FA2"/><circle cx="96" cy="24" r="3.5" fill="#FFD23F"/>
+          <circle cx="246" cy="24" r="3.5" fill="#fff"/><circle cx="290" cy="34" r="4" fill="#9B5DE5"/>
+        </g>
+      </svg>
+    </div>
+    <h1 class="logo" aria-label="美食小精靈"><span>美</span><span>食</span><span>小</span><span>精</span><span>靈</span></h1>
+    <p class="tagline">頭上長出美食的小精靈們，<br>帶你找附近好吃的！</p>
+    <div id="homeFilters"></div>
     <button id="gpsBtn" class="btn big" type="button">📍 用我現在的位置找</button>
     <div class="or">或</div>
     <form id="placeForm" class="place-form">
       <input id="placeInput" type="search" placeholder="輸入地點，例如：台北車站" enterkeyhint="search" autocomplete="off" aria-label="輸入地點">
-      <button class="btn" type="submit">搜尋</button>
+      <button class="btn pink" type="submit">搜尋</button>
     </form>
   </section>
 
   <section id="loading" class="screen center" hidden>
     <div class="loading-sprites" id="loadingSprites"></div>
+    <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
     <p class="loading-msg" id="loadingMsg">小精靈出發探險中…</p>
   </section>
 
@@ -210,16 +317,19 @@ a{color:inherit}
 
     <div class="notice" id="notice">
       <span>💡</span>
-      <div>這版<mark>沒有</mark>依 Google 評分篩選（那需要綁信用卡的 Google 付費服務）。店家依距離由近到遠排，按「⭐ Google 評分」就能直接看評價。</div>
+      <div>這版沒有 Google 評分篩選（那要綁信用卡），而且<mark>價位是依店名和料理種類預估的</mark>，僅供參考。按「⭐ Google 評分」可以看真實評價和價位。</div>
       <button class="notice-x" id="noticeX" type="button" aria-label="關閉提示">✕</button>
     </div>
 
+    <div id="resFilters"></div>
+
     <div id="found">
-      <h2 class="section-title">選一隻小精靈 <span class="sub" id="summary"></span></h2>
+      <h2 class="section-title"><span class="hl">選一隻小精靈</span> <span class="sub">👉 左右滑動</span></h2>
+      <p class="summary" id="summary"></p>
       <div class="tiles" id="tiles"></div>
       <div class="panel" id="panel">
         <div class="panel-head">
-          <div id="panelSprite"></div>
+          <div class="burst" id="panelSprite"></div>
           <div class="bubble left">
             <div class="bubble-title" id="panelTitle"></div>
             <div class="bubble-line" id="panelLine"></div>
@@ -234,15 +344,33 @@ a{color:inherit}
       <div id="emptySprite"></div>
       <div class="bubble up"><div id="emptyMsg"></div></div>
       <div class="err-actions">
-        <button id="widenBtn" class="btn" type="button">🔍 擴大到 1 公里找找</button>
+        <button id="widenBtn" class="btn" type="button"></button>
+        <button id="resetBudgetBtn" class="btn blue" type="button">💰 預算改成不限</button>
         <button id="emptyHomeBtn" class="btn plain" type="button">🏠 換個地點</button>
       </div>
     </div>
   </section>
 
+  <!-- 距離／預算篩選：首頁和結果頁共用，切換畫面時搬過去 -->
+  <div class="filters" id="filters">
+    <div class="f-row">
+      <div class="f-head"><span>🚶 要找多遠？</span><span class="f-value" id="distText"></span></div>
+      <div class="chips" id="distChips"></div>
+    </div>
+    <div class="f-row">
+      <div class="f-head"><span>💰 每人預算</span><span class="f-value" id="budgetText"></span></div>
+      <div class="range2">
+        <div class="track"><div class="dim l" id="dimL"></div><div class="dim r" id="dimR"></div></div>
+        <input type="range" id="bMin" min="0" max="8" step="1" aria-label="預算下限">
+        <input type="range" id="bMax" min="0" max="8" step="1" aria-label="預算上限">
+      </div>
+      <div class="ticks" id="ticks"></div>
+    </div>
+  </div>
+
   <footer class="foot">
     店家資料 © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> 貢獻者・地點搜尋 Photon<br>
-    料理種類是依店名自動判斷的，偶爾會猜錯 🙏
+    料理種類和價位都是自動預估的，偶爾會猜錯 🙏
   </footer>
 </div>
 
@@ -250,9 +378,12 @@ a{color:inherit}
 (() => {
 'use strict';
 
-const RADIUS = 500;
 const PAGE = 30;
 const INK = '#2B2118';
+const DISTS = [500, 1000, 2000, 3000, 5000];
+const DIST_LABELS = ['500m', '1km', '2km', '3km', '5km'];
+const DIST_COLORS = ['#3DDC97', '#4CC9F0', '#FFD23F', '#FF8C42', '#FF5FA2'];
+const BUDGETS = [100, 200, 300, 500, 800, 1000, 1500, 2000, Infinity];
 const OVERPASS = [
   'https://overpass-api.de/api/interpreter',
   'https://maps.mail.ru/osm/tools/overpass/api/interpreter',
@@ -326,8 +457,7 @@ const NAME_RULES = [
 ];
 const CLOSED_RE = /停業|歇業|已歇|已關|永久關閉|整修/;
 
-function classify(t) {
-  const text = [t.name, t['name:zh'], t['name:en'], t.brand, t['brand:en']].filter(Boolean).join(' ');
+function classify(t, text) {
   if (t['diet:vegan'] === 'only' || t['diet:vegetarian'] === 'only' || NAME_RULES[0][1].test(text)) return 'vegetarian';
   for (const raw of (t.cuisine || '').toLowerCase().split(/[;,]/)) {
     const key = CUISINE_MAP[raw.trim().replace(/\s+/g, '_')];
@@ -336,6 +466,58 @@ function classify(t) {
   for (const [key, re] of NAME_RULES) if (re.test(text)) return key;
   if (t.amenity === 'cafe' || t.amenity === 'ice_cream') return 'cafe';
   return 'other';
+}
+
+// ---------- 價位預估（每人，新台幣） ----------
+// 免費資料幾乎沒有價格，只能依「連鎖品牌 → 店名關鍵字 → 料理種類」粗估
+const BRAND_PRICE = [
+  [/麥當勞|mcdonald/i, 100, 200], [/肯德基|kfc/i, 120, 250], [/摩斯|mos ?burger/i, 120, 250], [/漢堡王|burger king/i, 150, 280],
+  [/subway/i, 120, 220], [/頂呱呱|丹丹/i, 100, 200], [/必勝客|pizza hut/i, 250, 450], [/達美樂|domino|拿坡里/i, 200, 400],
+  [/星巴克|starbucks/i, 150, 300], [/路易莎|louisa|cama|85度c|85°c/i, 80, 200],
+  [/50嵐|五十嵐|清心|coco都可|迷客夏|可不可|大苑子|鮮茶道|珍煮丹|茶湯會|日出茶太|麻古|萬波|得正|龜記|再睡5分鐘/i, 40, 120],
+  [/八方雲集|四海遊龍/i, 80, 150], [/吉野家|yoshinoya|すき家|sukiya/i, 120, 250], [/三媽臭臭鍋/i, 150, 250],
+  [/爭鮮/i, 150, 300], [/藏壽司|壽司郎|はま壽司|hama sushi/i, 300, 500], [/一蘭|一風堂|ichiran|ippudo/i, 300, 450],
+  [/鼎泰豐|din tai fung/i, 500, 900], [/添好運/i, 300, 500], [/瓦城/i, 450, 700], [/大心/i, 250, 400], [/饗泰多/i, 400, 600],
+  [/石二鍋|12mini/i, 250, 450], [/築間/i, 450, 650], [/海底撈/i, 700, 1100], [/馬辣/i, 800, 1000], [/老四川/i, 600, 900],
+  [/西堤|陶板屋/i, 650, 850], [/原燒/i, 800, 1000], [/王品|夏慕尼/i, 1300, 2000],
+  [/胡同|乾杯|屋馬/i, 900, 1600], [/饗食天堂|饗饗|旭集|漢來海港/i, 1000, 2000], [/欣葉/i, 700, 1200], [/春水堂/i, 200, 400],
+];
+const KEYWORD_PRICE = [
+  [/omakase|無菜單|割烹|懷石|鮨|鐵板燒|teppanyaki|米其林|michelin/i, 1500, 4000],
+  [/吃到飽|buffet/i, 800, 1600],
+  [/大飯店|酒店|hotel/i, 1000, 2500],
+  [/steak ?house|牛排館/i, 800, 2500],
+  [/麻辣/i, 600, 1000],
+  [/燒肉|yakiniku/i, 600, 1200],
+  [/居酒屋|燒鳥|焼鳥|串燒|串焼|izakaya|yakitori/i, 500, 1000],
+  [/酒吧|餐酒|bistro|brasserie|lounge|\bbar\b|\bpub\b/i, 500, 1200],
+  [/涮涮|小火鍋|個人鍋|臭臭鍋|石頭火鍋/i, 200, 400],
+  [/飲茶|酒樓|點心|dim ?sum/i, 400, 800],
+  [/熱炒|快炒/i, 300, 600],
+  [/茶餐廳/i, 150, 300],
+  [/早午餐|brunch/i, 250, 450],
+  [/拉麵|ramen/i, 250, 400],
+  [/壽司|sushi/i, 300, 800],
+  [/丼|定食|咖哩|curry/i, 180, 350],
+  [/牛排|steak/i, 250, 600],
+  [/義大利麵|pasta|pizza|披薩|燉飯/i, 250, 500],
+  [/手搖|飲料|茶飲/i, 40, 120],
+  [/豆花|冰|愛玉|仙草|甜湯|紅豆|芋圓/i, 50, 150],
+  [/甜點|蛋糕|cake|dessert|鬆餅|waffle/i, 150, 350],
+  [/便當|自助餐|快餐/i, 80, 150],
+  [/漢堡|burger/i, 200, 400],
+];
+const CAT_PRICE = {
+  taiwanese:[80, 200], chinese:[150, 400], noodle:[100, 250], japanese:[200, 500], korean:[250, 500], hotpot:[350, 700],
+  bbq:[500, 1000], seafood:[400, 1000], sea:[200, 450], intl:[250, 550], western:[300, 700], fastfood:[120, 250],
+  breakfast:[60, 150], cafe:[150, 350], vegetarian:[120, 350], other:[150, 500],
+};
+
+function estimatePrice(text, cat, amenity) {
+  for (const [re, lo, hi] of BRAND_PRICE) if (re.test(text)) return [lo, hi];
+  for (const [re, lo, hi] of KEYWORD_PRICE) if (re.test(text)) return [lo, hi];
+  if (amenity === 'fast_food' && cat === 'other') return [80, 200];
+  return CAT_PRICE[cat];
 }
 
 // ---------- 畫小精靈（SVG） ----------
@@ -462,7 +644,7 @@ async function reverseArea({lat, lng}) {
 }
 
 async function fetchPlaces({lat, lng}, radius) {
-  const q = `[out:json][timeout:25];nwr["amenity"~"^(restaurant|fast_food|cafe|food_court|ice_cream)$"](around:${radius},${lat},${lng});out center tags;`;
+  const q = `[out:json][timeout:90];nwr["amenity"~"^(restaurant|fast_food|cafe|food_court|ice_cream)$"](around:${radius},${lat},${lng});out center tags qt;`;
   let lastErr;
   for (const url of OVERPASS) {
     try {
@@ -470,7 +652,7 @@ async function fetchPlaces({lat, lng}, radius) {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: 'data=' + encodeURIComponent(q),
-      }, 30000);
+      }, radius >= 2000 ? 90000 : 45000);
       if (!res.ok) throw new Error('overpass ' + res.status);
       return (await res.json()).elements || [];
     } catch (e) { lastErr = e; }
@@ -500,12 +682,19 @@ function toPlaces(elements, here, radius) {
     if (lat == null || lng == null) continue;
     const dist = distance(here, {lat, lng});
     if (dist > radius + 50) continue;
-    list.push({name, lat, lng, dist, cat: classify(t), hours: t.opening_hours || '', addr: buildAddr(t)});
+    const text = [name, t['name:zh'], t['name:en'], t.brand, t['brand:en']].filter(Boolean).join(' ');
+    const cat = classify(t, text);
+    list.push({name, lat, lng, dist, cat, price: estimatePrice(text, cat, t.amenity), hours: t.opening_hours || '', addr: buildAddr(t)});
   }
   list.sort((a, b) => a.dist - b.dist);
-  // 同名又離很近的視為同一間
-  const out = [];
-  for (const p of list) if (!out.some(q => q.name === p.name && distance(p, q) < 60)) out.push(p);
+  // 同名又離很近的視為同一間（用名字分組，店家上萬間時也夠快）
+  const byName = new Map(), out = [];
+  for (const p of list) {
+    const same = byName.get(p.name);
+    if (same?.some(q => distance(p, q) < 60)) continue;
+    if (same) same.push(p); else byName.set(p.name, [p]);
+    out.push(p);
+  }
   return out;
 }
 
@@ -523,31 +712,108 @@ function fmtHours(h) {
 }
 const fmtDist = d => d < 1000 ? `${Math.max(10, Math.round(d / 10) * 10)} 公尺` : `${(d / 1000).toFixed(1)} 公里`;
 const fmtRadius = r => r >= 1000 ? `${r / 1000} 公里` : `${r} 公尺`;
-const walkMin = d => Math.max(1, Math.round(d / 75));
+const travelText = d => d <= 1500 ? `🚶 走路 ${Math.max(1, Math.round(d / 75))} 分` : `🛵 騎車 ${Math.max(1, Math.round(d / 300))} 分`;
+const fmtPrice = ([lo, hi]) => `💰 預估 $${lo}–${hi}`;
 const gSearchUrl = p => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent([p.name, p.addr || state.district].filter(Boolean).join(' '));
-const gDirUrl = p => `https://www.google.com/maps/dir/?api=1&destination=${p.lat.toFixed(6)},${p.lng.toFixed(6)}&travelmode=walking`;
+const gDirUrl = p => `https://www.google.com/maps/dir/?api=1&destination=${p.lat.toFixed(6)},${p.lng.toFixed(6)}` + (p.dist <= 1500 ? '&travelmode=walking' : '');
 
 function storageGet(k) { try { return localStorage.getItem(k); } catch { return null; } }
 function storageSet(k, v) { try { localStorage.setItem(k, v); } catch { /* 無痕模式等情況存不了，沒關係 */ } }
 
-// ---------- 畫面 ----------
-const state = {here: null, radius: RADIUS, label: '', district: '', places: [], selected: 'all', shown: PAGE};
+// ---------- 狀態與篩選 ----------
+const state = {
+  here: null, label: '', district: '', fetchedRadius: 0, all: [], visible: [],
+  radius: 500, bMin: 0, bMax: BUDGETS.length - 1, selected: 'all', shown: PAGE,
+};
 let lastAction = null;
 let msgTimer = null;
+const filtersEl = $('#filters');
 
+function loadFilters() {
+  try {
+    const f = JSON.parse(storageGet('foodSprites.filters') || '{}');
+    if (DISTS.includes(f.radius)) state.radius = f.radius;
+    if (Number.isInteger(f.bMin) && Number.isInteger(f.bMax) && f.bMin >= 0 && f.bMin <= f.bMax && f.bMax < BUDGETS.length) {
+      state.bMin = f.bMin; state.bMax = f.bMax;
+    }
+  } catch { /* 存的格式不對就用預設值 */ }
+}
+const saveFilters = () => storageSet('foodSprites.filters', JSON.stringify({radius: state.radius, bMin: state.bMin, bMax: state.bMax}));
+
+function budgetBounds() {
+  return [state.bMin === 0 ? 0 : BUDGETS[state.bMin], BUDGETS[state.bMax]];
+}
+function budgetText() {
+  const last = BUDGETS.length - 1, {bMin, bMax} = state;
+  if (bMin === 0 && bMax === last) return '不限';
+  if (bMin === 0) return `$${BUDGETS[bMax]} 以內`;
+  if (bMax === last) return `$${BUDGETS[bMin]} 以上`;
+  if (bMin === bMax) return `約 $${BUDGETS[bMin]}`;
+  return `$${BUDGETS[bMin]} – $${BUDGETS[bMax]}`;
+}
+
+function buildFilters() {
+  $('#distChips').innerHTML = DISTS.map((d, i) =>
+    `<button class="chip" type="button" data-r="${d}" style="--c:${DIST_COLORS[i]}" aria-label="${fmtRadius(d)}">${DIST_LABELS[i]}</button>`).join('');
+  const last = BUDGETS.length - 1;
+  $('#ticks').innerHTML = [[0, '$100'], [2, '$300'], [4, '$800'], [6, '$1500'], [8, '$2000+']]
+    .map(([i, label]) => `<span style="left:calc(15px + (100% - 30px) * ${i / last})">${label}</span>`).join('');
+}
+
+function syncFilterUI() {
+  for (const chip of document.querySelectorAll('#distChips .chip')) chip.setAttribute('aria-pressed', String(+chip.dataset.r === state.radius));
+  $('#distText').textContent = fmtRadius(state.radius);
+  const last = BUDGETS.length - 1;
+  $('#bMin').value = state.bMin;
+  $('#bMax').value = state.bMax;
+  // 兩顆把手疊在右半邊時，讓「下限」在上面，才拉得開
+  $('#bMin').style.zIndex = state.bMin === state.bMax && state.bMin > last / 2 ? 3 : 1;
+  $('#bMax').style.zIndex = 2;
+  $('#dimL').style.width = `calc(11px + (100% - 22px) * ${state.bMin / last})`;
+  $('#dimR').style.width = `calc(11px + (100% - 22px) * ${1 - state.bMax / last})`;
+  $('#budgetText').textContent = budgetText();
+}
+
+const onResults = () => !$('#results').hidden;
+
+function applyFilters() {
+  const [lo, hi] = budgetBounds();
+  state.visible = state.all.filter(p => p.dist <= state.radius && p.price[0] <= hi && p.price[1] >= lo);
+  state.shown = PAGE;
+  if (state.selected !== 'all' && !state.visible.some(p => p.cat === state.selected)) state.selected = 'all';
+  renderResults();
+}
+
+function setRadius(r) {
+  if (r === state.radius) return;
+  state.radius = r;
+  saveFilters();
+  syncFilterUI();
+  if (!onResults() || !state.here) return;
+  if (r <= state.fetchedRadius) applyFilters();
+  else {
+    const {here, label} = state;
+    run(() => search(here, label, {keepCat: true}));
+  }
+}
+
+// ---------- 畫面 ----------
 function show(id) {
   for (const s of document.querySelectorAll('.screen')) s.hidden = s.id !== id;
+  if (id === 'home') $('#homeFilters').append(filtersEl);
+  if (id === 'results') $('#resFilters').append(filtersEl);
   window.scrollTo(0, 0);
 }
 
-const LOADING_MSGS = ['小精靈出發探險中…', '正在聞聞哪裡最香…', '幫你把餐廳分門別類…', '快好了，再等一下下…'];
+const LOADING_MSGS = ['小精靈出發探險中…', '正在聞聞哪裡最香…', '幫你把餐廳分門別類…', '順便估一下價位…', '快好了，再等一下下…'];
 function startLoading(first) {
   const picks = [...CATS].sort(() => Math.random() - .5).slice(0, 3);
   $('#loadingSprites').innerHTML = picks.map(c => spriteSVG(c, {size: 64, anim: true})).join('');
+  if (!first && state.radius >= 3000) first = `範圍 ${fmtRadius(state.radius)}，店家很多，小精靈要跑久一點（約 10–30 秒）…`;
   let i = 0;
   $('#loadingMsg').textContent = first || LOADING_MSGS[0];
   clearInterval(msgTimer);
-  msgTimer = setInterval(() => { $('#loadingMsg').textContent = LOADING_MSGS[++i % LOADING_MSGS.length]; }, 1800);
+  msgTimer = setInterval(() => { $('#loadingMsg').textContent = LOADING_MSGS[++i % LOADING_MSGS.length]; }, 2200);
 }
 
 async function run(action, firstMsg) {
@@ -568,6 +834,7 @@ function errorHTML(e) {
   if (code === 3) return '定位花太久了，再試一次看看？';
   if (code === 'unsupported') return '這個瀏覽器不支援定位，請改用輸入地點。';
   if (code === 'notfound') return `找不到「${esc(e.q)}」這個地點，<br>換個說法試試？（例如加上縣市）`;
+  if (state.radius >= 3000) return '範圍太大，餐廳資料伺服器忙不過來…<br>把距離調小一點，或等一下再試！';
   return '餐廳資料伺服器現在有點忙，<br>等一下再試一次吧！';
 }
 
@@ -577,59 +844,68 @@ function showError(e) {
   show('error');
 }
 
-async function search(here, label, radius = RADIUS) {
+async function search(here, label, {keepCat = false} = {}) {
+  const radius = state.radius;
   const [elements, district] = await Promise.all([
     fetchPlaces(here, radius),
     reverseArea(here).catch(() => ''),
   ]);
   Object.assign(state, {
-    here, radius, district,
+    here, district, fetchedRadius: radius,
     label: label || district || '你的位置',
-    places: toPlaces(elements, here, radius),
-    selected: 'all',
-    shown: PAGE,
+    all: toPlaces(elements, here, radius),
   });
-  renderResults();
+  if (!keepCat) state.selected = 'all';
   show('results');
+  applyFilters();
 }
 
 function renderResults() {
   $('#whereLabel').textContent = state.label;
   $('#radiusLabel').textContent = fmtRadius(state.radius);
-  $('#notice').hidden = storageGet('foodSprites.noticeClosed') === '1';
+  $('#notice').hidden = storageGet('foodSprites.noticeClosed2') === '1';
 
-  const n = state.places.length;
+  const places = state.visible, n = places.length;
   $('#found').hidden = n === 0;
   $('#empty').hidden = n > 0;
   if (n === 0) {
+    const nothingNearby = !state.all.some(p => p.dist <= state.radius);
+    const next = DISTS.find(d => d > state.radius);
     $('#emptySprite').innerHTML = spriteSVG(GUIDE, {size: 96, mood: 'sad'});
-    $('#emptyMsg').textContent = `${fmtRadius(state.radius)}內沒找到餐廳耶…`;
-    $('#widenBtn').hidden = state.radius >= 1000;
+    $('#emptyMsg').innerHTML = nothingNearby
+      ? `${fmtRadius(state.radius)}內沒找到餐廳耶…`
+      : `預算「${budgetText()}」的店，這附近沒找到…<br>調整一下上面的預算試試看！`;
+    $('#widenBtn').hidden = !nothingNearby || !next;
+    if (next) $('#widenBtn').textContent = `🔍 擴大到 ${fmtRadius(next)} 找找`;
+    $('#resetBudgetBtn').hidden = nothingNearby;
     return;
   }
 
   const counts = {};
-  for (const p of state.places) counts[p.cat] = (counts[p.cat] || 0) + 1;
+  for (const p of places) counts[p.cat] = (counts[p.cat] || 0) + 1;
   const cats = CATS.filter(c => counts[c.key])
     .sort((a, b) => (a.key === 'other') - (b.key === 'other') || counts[b.key] - counts[a.key]);
-  $('#summary').textContent = `共 ${n} 間・${cats.length} 種料理`;
+  $('#summary').textContent = `共 ${n} 間・${cats.length} 種料理・預算 ${budgetText()}`;
   $('#tiles').innerHTML = [GUIDE, ...cats].map(c => tileHTML(c, c === GUIDE ? n : counts[c.key])).join('');
+  const sel = $('#tiles .tile[aria-pressed="true"]');
+  $('#tiles').scrollLeft = sel && state.selected !== 'all' ? sel.offsetLeft - 16 : 0;
   renderPanel();
 }
 
 function tileHTML(c, count) {
-  return `<button class="tile" type="button" data-key="${c.key}" aria-pressed="${state.selected === c.key}" style="--soft:${mix(c.color, '#ffffff', .55)}">`
-    + `<span class="tile-count">${count}</span>${spriteSVG(c, {size: 58, anim: true})}`
+  return `<button class="tile" type="button" data-key="${c.key}" aria-pressed="${state.selected === c.key}" style="--c:${c.color}">`
+    + `<span class="tile-count">${count}</span>${spriteSVG(c, {size: 56, anim: true})}`
     + `<span class="tile-name">${c.name}</span><span class="tile-who">${c.who}</span></button>`;
 }
 
 function cardHTML(p) {
   const c = CAT[p.cat];
-  return `<article class="card" style="--c:${c.color};--soft:${mix(c.color, '#ffffff', .55)}">`
-    + `<div class="card-sprite">${spriteSVG(c, {size: 44})}</div>`
+  return `<article class="card" style="--c:${c.color}">`
+    + `<div class="card-sprite">${spriteSVG(c, {size: 46})}</div>`
     + `<div class="card-body">`
     + `<h3 class="card-name">${esc(p.name)}</h3>`
-    + `<div class="card-meta"><span class="tag">${c.name}</span><span>📍 ${fmtDist(p.dist)}・走路約 ${walkMin(p.dist)} 分鐘</span></div>`
+    + `<div class="card-meta"><span class="tag">${c.name}</span><span class="pill">📍 ${fmtDist(p.dist)}</span>`
+    + `<span class="pill">${travelText(p.dist)}</span><span class="pill price">${fmtPrice(p.price)}</span></div>`
     + (p.hours ? `<div class="card-hours">🕒 ${esc(fmtHours(p.hours))}</div>` : '')
     + `<div class="card-actions">`
     + `<a class="btn small" href="${esc(gSearchUrl(p))}" target="_blank" rel="noopener">⭐ Google 評分</a>`
@@ -640,9 +916,10 @@ function cardHTML(p) {
 function renderPanel() {
   const sel = state.selected;
   const cat = sel === 'all' ? GUIDE : CAT[sel];
-  const items = sel === 'all' ? state.places : state.places.filter(p => p.cat === sel);
+  const items = sel === 'all' ? state.visible : state.visible.filter(p => p.cat === sel);
 
-  $('#panelSprite').innerHTML = spriteSVG(cat, {size: 84, anim: true});
+  $('#panel').style.setProperty('--c', cat.color);
+  $('#panelSprite').innerHTML = spriteSVG(cat, {size: 78, anim: true});
   $('#panelTitle').innerHTML = `${esc(cat.who)}・${esc(sel === 'all' ? '全部美食' : cat.name)}<span class="count">${items.length} 間</span>`;
   $('#panelLine').textContent = sel === 'all'
     ? '由近到遠排好囉！點上面的小精靈可以只看那種料理～'
@@ -669,6 +946,26 @@ $('#placeForm').addEventListener('submit', ev => {
   }, `正在找「${q}」在哪裡…`);
 });
 
+$('#distChips').addEventListener('click', ev => {
+  const chip = ev.target.closest('.chip');
+  if (chip) setRadius(+chip.dataset.r);
+});
+
+function onBudgetInput(ev) {
+  let a = +$('#bMin').value, b = +$('#bMax').value;
+  if (a > b) { if (ev.target.id === 'bMin') b = a; else a = b; }
+  state.bMin = a; state.bMax = b;
+  syncFilterUI();
+}
+function onBudgetChange() {
+  saveFilters();
+  if (onResults() && state.here) applyFilters();
+}
+for (const id of ['#bMin', '#bMax']) {
+  $(id).addEventListener('input', onBudgetInput);
+  $(id).addEventListener('change', onBudgetChange);
+}
+
 $('#tiles').addEventListener('click', ev => {
   const tile = ev.target.closest('.tile');
   if (!tile) return;
@@ -681,7 +978,7 @@ $('#tiles').addEventListener('click', ev => {
 });
 
 $('#moreBtn').addEventListener('click', () => { state.shown += PAGE; renderPanel(); });
-$('#noticeX').addEventListener('click', () => { $('#notice').hidden = true; storageSet('foodSprites.noticeClosed', '1'); });
+$('#noticeX').addEventListener('click', () => { $('#notice').hidden = true; storageSet('foodSprites.noticeClosed2', '1'); });
 $('#againBtn').addEventListener('click', () => lastAction && run(lastAction));
 $('#retryBtn').addEventListener('click', () => lastAction && run(lastAction));
 const goHome = () => { show('home'); $('#placeInput').focus(); };
@@ -689,19 +986,28 @@ $('#homeBtn').addEventListener('click', () => show('home'));
 $('#errHomeBtn').addEventListener('click', goHome);
 $('#emptyHomeBtn').addEventListener('click', goHome);
 $('#widenBtn').addEventListener('click', () => {
-  const {here, label} = state;
-  run(() => search(here, label, 1000));
+  const next = DISTS.find(d => d > state.radius);
+  if (next) setRadius(next);
+});
+$('#resetBudgetBtn').addEventListener('click', () => {
+  state.bMin = 0; state.bMax = BUDGETS.length - 1;
+  syncFilterUI(); saveFilters(); applyFilters();
 });
 
 // ---------- 開場 ----------
+loadFilters();
+buildFilters();
+syncFilterUI();
+show('home');
 $('#heroSprites').innerHTML = ['noodle', 'japanese', null, 'cafe', 'hotpot']
   .map(k => k ? spriteSVG(CAT[k], {size: 54, anim: true}) : spriteSVG(GUIDE, {size: 84, anim: true})).join('');
 document.querySelector('link[rel="icon"]').href = 'data:image/svg+xml,' + encodeURIComponent(
   spriteSVG(GUIDE, {size: 64}).replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" '));
 
-// 網址帶 ?lat=..&lng=.. 時直接用那個位置搜尋（方便收藏或測試）
+// 網址帶 ?lat=..&lng=..（可加 &r=公尺）時直接用那個位置搜尋（方便收藏或測試）
 const params = new URLSearchParams(location.search);
-const pLat = parseFloat(params.get('lat')), pLng = parseFloat(params.get('lng'));
+const pLat = parseFloat(params.get('lat')), pLng = parseFloat(params.get('lng')), pR = parseInt(params.get('r'), 10);
+if (DISTS.includes(pR)) { state.radius = pR; syncFilterUI(); }
 if (Number.isFinite(pLat) && Number.isFinite(pLng)) run(() => search({lat: pLat, lng: pLng}));
 })();
 </script>
